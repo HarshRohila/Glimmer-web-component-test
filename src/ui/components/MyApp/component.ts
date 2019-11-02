@@ -6,9 +6,9 @@ export default class MyApp extends Component {
     didInsertElement() {
         this.element.addEventListener('got-messages', this.gotMessages.bind(this), false);
     }
-    
+
     gotMessages(event: CustomEvent) {
-        this.messages = event.detail;
+        this.updateMessages(event.detail);
     }
 
     addMessage() {
@@ -16,7 +16,12 @@ export default class MyApp extends Component {
         if (message) {
             const messagesCopy = this.messages.slice();
             messagesCopy.push(message);
-            this.messages = messagesCopy;
+            this.updateMessages(messagesCopy);
         }
+    }
+
+    private updateMessages(messages: string[]) {
+        this.messages = messages;
+        this.element['messages'] = messages;
     }
 }

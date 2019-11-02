@@ -17,8 +17,15 @@ class FloorPlan extends HTMLElement {
       }));
     }
 
+    get messages() {
+      if (!this.myApp) {
+        this.myApp = this.shadowRoot.querySelector('.my-app');
+      }
+      return this.myApp['messages'];
+    }
+
     connectedCallback() {
-        fetch(`./app.css`)
+        fetch('./app.css', {mode: 'no-cors'})
           .then(res => res.text())
           .then(data => {
             const style = document.createElement('style');
