@@ -1,7 +1,6 @@
 # my-app
 
-This README outlines the details of collaborating on this Glimmer application.
-A short introduction of this app could easily go here.
+Glimmer web component test
 
 ## Prerequisites
 
@@ -32,3 +31,9 @@ You will need the following things properly installed on your computer.
 
 * [glimmerjs](http://github.com/tildeio/glimmer/)
 * [ember-cli](https://ember-cli.com/)
+
+## Web component test
+
+* `ember build -prod`
+* `copy css and js in dist folder to wc-test (rename js to app.js)`
+* `open index.html (to apply css use live server to run index.html`
