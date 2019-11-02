@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        {{#each @messages key="@index" as |message|}}
+            <li>{{message}}</li>
+        {{/each}}
+    </ul>
+    <input type="text">
+    <button onclick={{action @addMessage}}>Add message</button>
+</div>

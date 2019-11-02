@@ -1,1 +1,6 @@
-<div><h1>Welcome to Glimmer!</h1></div>
+<div class="my-app">
+    <MyAppChild 
+        @messages={{this.messages}} 
+        @addMessage={{action addMessage}}>
+    </MyAppChild>
+</div>
