@@ -4,24 +4,15 @@ export default class MyApp extends Component {
     @tracked messages = [];
 
     didInsertElement() {
-        this.element.addEventListener('got-messages', this.gotMessages.bind(this), false);
+        this.element.dispatchEvent(new CustomEvent('floorplan-ready', { bubbles: true, detail: this }));
     }
-
-    gotMessages(event: CustomEvent) {
-        this.updateMessages(event.detail);
-    }
-
+    
     addMessage() {
         const message = this.element.querySelector('input').value;
         if (message) {
             const messagesCopy = this.messages.slice();
             messagesCopy.push(message);
-            this.updateMessages(messagesCopy);
+            this.messages = messagesCopy;
         }
-    }
-
-    private updateMessages(messages: string[]) {
-        this.messages = messages;
-        this.element['messages'] = messages;
-    }
+    }        
 }
