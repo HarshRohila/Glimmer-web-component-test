@@ -1,42 +1,9 @@
 import { ComponentManager, setPropertyDidChange } from '@glimmer/component';
 import App from './main';
+import initializeCustomElements from '@glimmer/web-component';
 
 const app = new App();
-const containerElement = document.querySelector('floor-plan');
-containerElement.attachShadow({mode: 'open'});
-
-class FloorPlan extends HTMLElement {
-    myApp: HTMLElement;
-
-    set messages(messages: string[]) {
-      if (!this.myApp) {
-        this.myApp = this.shadowRoot.querySelector('.my-app');
-      }
-      this.myApp.dispatchEvent(new CustomEvent('got-messages', {
-        detail: messages
-      }));
-    }
-
-    get messages() {
-      if (!this.myApp) {
-        this.myApp = this.shadowRoot.querySelector('.my-app');
-      }
-      return this.myApp['messages'];
-    }
-
-    connectedCallback() {
-        fetch('./app.css', {mode: 'no-cors'})
-          .then(res => res.text())
-          .then(data => {
-            const style = document.createElement('style');
-            style.innerHTML = data;
-            this.shadowRoot.appendChild(style);
-          });
-    }
-}
-
-customElements.define('floor-plan', FloorPlan);
-
+const containerElement = document.getElementById('app');
 setPropertyDidChange(() => {
   app.scheduleRerender();
 });
@@ -47,6 +14,9 @@ app.registerInitializer({
   }
 });
 
-app.renderComponent('MyApp', containerElement.shadowRoot, null);
-
-app.boot();
+app.renderComponent('MyApp', containerElement, null);
+app.boot().then(() => {
+  initializeCustomElements(app, {
+    'floor-plan': 'MyApp'
+  });
+});
