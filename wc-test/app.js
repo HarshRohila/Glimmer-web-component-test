@@ -42,13 +42,13 @@ for(let s=0;s<e.length;s++){let i=e[s].value()
 t=Math.max(i,t)}return t}}b(B)
 class L extends O{static create(e){return new f(this.id,new L(e))}constructor(e){super(),this.tag=e,this.lastUpdated=p}compute(){return Math.max(this.lastUpdated,this.tag.value())}update(e){e!==this.tag&&(this.tag=e,this.lastUpdated=_,this.invalidate())}}b(L)
 class M{constructor(){this.lastRevision=null,this.lastValue=null}value(){let e=this.tag,t=this.lastRevision,s=this.lastValue
-return null!==t&&e.validate(t)||(s=this.lastValue=this.compute(),this.lastRevision=e.value()),s}invalidate(){this.lastRevision=null}}class R{constructor(e){this.lastValue=null,this.lastRevision=null,this.initialized=!1,this.tag=e.tag,this.reference=e}peek(){return this.initialized?this.lastValue:this.initialize()}revalidate(){if(!this.initialized)return this.initialize()
+return null!==t&&e.validate(t)||(s=this.lastValue=this.compute(),this.lastRevision=e.value()),s}invalidate(){this.lastRevision=null}}class D{constructor(e){this.lastValue=null,this.lastRevision=null,this.initialized=!1,this.tag=e.tag,this.reference=e}peek(){return this.initialized?this.lastValue:this.initialize()}revalidate(){if(!this.initialized)return this.initialize()
 let e=this.reference,t=this.lastRevision,s=e.tag
-if(s.validate(t))return D
+if(s.validate(t))return R
 this.lastRevision=s.value()
 let i=this.lastValue,n=e.value()
-return n===i?D:(this.lastValue=n,n)}initialize(){let e=this.reference,t=this.lastValue=e.value()
-return this.lastRevision=e.tag.value(),this.initialized=!0,t}}const D="adb3b78e-3d22-4e4b-877a-6317c2c5c145"
+return n===i?R:(this.lastValue=n,n)}initialize(){let e=this.reference,t=this.lastValue=e.value()
+return this.lastRevision=e.tag.value(),this.initialized=!0,t}}const R="adb3b78e-3d22-4e4b-877a-6317c2c5c145"
 class I{constructor(e){this.inner=e,this.tag=y}value(){return this.inner}}class F extends o{constructor(e,t){super(e.valueReferenceFor(t)),this.retained=!1,this.seen=!1,this.key=t.key,this.iterable=e,this.memo=e.memoReferenceFor(t)}update(e){this.retained=!0,this.iterable.updateValueReference(this.value,e),this.iterable.updateMemoReference(this.memo,e)}shouldRemove(){return!this.retained}reset(){this.retained=!1,this.seen=!1}}class P{constructor(e){this.iterator=null,this.map=a(),this.list=new h,this.tag=e.tag,this.iterable=e}isEmpty(){return(this.iterator=this.iterable.iterate()).isEmpty()}iterate(){let e
 return e=null===this.iterator?this.iterable.iterate():this.iterator,this.iterator=null,e}has(e){return!!this.map[e]}get(e){return this.map[e]}wasSeen(e){let t=this.map[e]
 return void 0!==t&&t.seen}append(e){let t=this.map,s=this.list,i=this.iterable,n=t[e.key]=new F(i,e)
@@ -81,10 +81,10 @@ return this.trackedComputedProperties[e]?(t=this.computedPropertyTags[e])||(this
 function W(e){let t=Y.get(e)
 if(t)return t
 let s=function(e){let t=null,s=e
-for(;!t;){if(!(s=q(s)))return t
+for(;!t;){if(!(s=K(s)))return t
 t=Y.get(s)}return t}(e)
-return t=new G(s),Y.set(e,t),t}const q=Object.getPrototypeOf
-const K=C.create()
+return t=new G(s),Y.set(e,t),t}const K=Object.getPrototypeOf
+const q=C.create()
 let J=function(){}
 class X extends Error{constructor(e,t,s){super(s),this.target=e,this.key=t}static for(e,t){return new X(e,t,`The property '${t}' on ${e} was changed after being rendered. If you want to change a property used in a template after the component has rendered, mark the property as a tracked property with the @tracked decorator.`)}}function Q(e,t,s=function(e,t){throw X.for(e,t)}){if("object"==typeof e&&e){return W(e).tagFor(t)}return y}class Z{constructor(e){this.debugName=null,this.__args__=null,Object.assign(this,e)}get element(){let e=this.bounds
 return t(e&&e.firstNode===e.lastNode,"The 'element' property can only be accessed on components that contain a single root element in their template. Try using 'bounds' instead to access the first and last nodes."),e.firstNode}get args(){return $(this,"args"),this.__args__}set args(e){this.__args__=e,W(this).updatableTagFor("args").inner.update(k)}static create(e){return new this(e)}didInsertElement(){}didUpdate(){}willDestroy(){}destroy(){this.willDestroy()}toString(){return`${this.debugName} component`}}const ee={attributeHook:!0,createArgs:!0,createCaller:!1,createInstance:!0,dynamicLayout:!1,dynamicScope:!1,dynamicTag:!0,elementHook:!0,prepareArgs:!1,updateHook:!0}
@@ -146,22 +146,22 @@ let a=i
 if(t>0){a=a.child()
 for(let s=0;s<t;s++)a.bindSymbol(e[s],r.at(s))}}e.pushFrame(),e.pushScope(a),e.call(s)}),ie.add(53,(e,{op1:t})=>{let s=e.stack.pop()
 if(w(s))s.value()&&e.goto(t)
-else{let i=new R(s)
+else{let i=new D(s)
 i.peek()&&e.goto(t),e.updateWith(new Ne(i))}}),ie.add(54,(e,{op1:t})=>{let s=e.stack.pop()
 if(w(s))s.value()||e.goto(t)
-else{let i=new R(s)
+else{let i=new D(s)
 i.peek()||e.goto(t),e.updateWith(new Ne(i))}}),ie.add(55,(e,{op1:t,op2:s})=>{e.stack.peek()===s&&e.goto(t)}),ie.add(56,e=>{let t=e.stack.peek()
-w(t)||e.updateWith(Ne.initialize(new R(t)))}),ie.add(63,e=>{let t=e.env,s=e.stack
+w(t)||e.updateWith(Ne.initialize(new D(t)))}),ie.add(63,e=>{let t=e.env,s=e.stack
 s.push(t.toConditionalReference(s.pop()))})
 class Ne extends re{constructor(e){super(),this.type="assert",this.tag=e.tag,this.cache=e}static initialize(e){let t=new Ne(e)
 return e.peek(),t}evaluate(e){let t=this.cache
-t.revalidate()!==D&&e.throw()}}class Oe extends re{constructor(e,t){super(),this.target=t,this.type="jump-if-not-modified",this.tag=e,this.lastRevision=e.value()}evaluate(e){let t=this.tag,s=this.target,i=this.lastRevision
+t.revalidate()!==R&&e.throw()}}class Oe extends re{constructor(e,t){super(),this.target=t,this.type="jump-if-not-modified",this.tag=e,this.lastRevision=e.value()}evaluate(e){let t=this.tag,s=this.target,i=this.lastRevision
 !e.alwaysRevalidate&&t.validate(i)&&e.goto(s)}didModify(){this.lastRevision=this.tag.value()}}class Te extends re{constructor(e){super(),this.target=e,this.type="did-modify",this.tag=y}evaluate(){this.target.didModify()}}class Be{constructor(e){this.tag=y,this.type="label",this.label=null,this.prev=null,this.next=null,r(this),this.label=e}evaluate(){}inspect(){return`${this.label} [${this._guid}]`}}ie.add(26,(e,{op1:t})=>{e.elements().appendText(e.constants.getString(t))}),ie.add(27,(e,{op1:t})=>{e.elements().appendComment(e.constants.getString(t))}),ie.add(33,(e,{op1:t})=>{e.elements().openElement(e.constants.getString(t))}),ie.add(34,e=>{let t=e.stack.pop().value()
 e.elements().openElement(t)}),ie.add(41,e=>{let t,s,i=e.stack.pop(),n=e.stack.pop(),r=e.stack.pop().value()
 if(w(i))t=i.value()
-else{let s=new R(i)
+else{let s=new D(i)
 t=s.peek(),e.updateWith(new Ne(s))}if(w(n))s=n.value()
-else{let t=new R(n)
+else{let t=new D(n)
 s=t.peek(),e.updateWith(new Ne(t))}e.elements().pushRemoteElement(t,r,s)}),ie.add(42,e=>{e.elements().popRemoteElement()}),ie.add(38,e=>{let t=e.fetchValue(ae.t0)
 t&&(t.flush(e),e.loadValue(ae.t0,null)),e.elements().flushElement()}),ie.add(39,e=>{e.elements().closeElement()}),ie.add(40,(e,{op1:t})=>{let s=e.constants.resolveHandle(t),i=e.stack.pop()
 var n=e.elements()
@@ -176,19 +176,19 @@ i.validate(n)||(e.env.scheduleUpdateModifier(s,t),this.lastUpdated=i.value())}}i
 e.elements().setStaticAttribute(n,r,a)}),ie.add(36,(e,{op1:t,op2:s,op3:i})=>{let n=e.constants.getString(t),r=e.stack.pop(),a=r.value(),l=i?e.constants.getString(i):null,o=e.elements().setDynamicAttribute(n,a,!!s,l)
 w(r)||e.updateWith(new Me(r,o))})
 class Me extends re{constructor(e,t){super(),this.reference=e,this.attribute=t,this.type="patch-element",this.tag=e.tag,this.lastRevision=this.tag.value()}evaluate(e){let t=this.attribute,s=this.reference,i=this.tag
-i.validate(this.lastRevision)||(this.lastRevision=i.value(),t.update(s.value(),e.env))}}function Re(e,t,s){return e.lookupComponentDefinition(t,s)}class De{constructor(e,t,s,i){this.inner=e,this.resolver=t,this.meta=s,this.args=i,this.tag=e.tag,this.lastValue=null,this.lastDefinition=null}value(){let e=this.inner,t=this.lastValue,s=e.value()
+i.validate(this.lastRevision)||(this.lastRevision=i.value(),t.update(s.value(),e.env))}}function De(e,t,s){return e.lookupComponentDefinition(t,s)}class Re{constructor(e,t,s,i){this.inner=e,this.resolver=t,this.meta=s,this.args=i,this.tag=e.tag,this.lastValue=null,this.lastDefinition=null}value(){let e=this.inner,t=this.lastValue,s=e.value()
 if(s===t)return this.lastDefinition
 let i=null
 if(ye(s))i=s
-else if("string"==typeof s&&s){i=Re(this.resolver,s,this.meta)}return i=this.curry(i),this.lastValue=s,this.lastDefinition=i,i}get(){return ue}curry(e){let t=this.args
+else if("string"==typeof s&&s){i=De(this.resolver,s,this.meta)}return i=this.curry(i),this.lastValue=s,this.lastDefinition=i,i}get(){return ue}curry(e){let t=this.args
 return!t&&ye(e)?e:e?new ve(e,t):null}}class Ie{constructor(e){this.list=e,this.tag=E(e),this.list=e}value(){let e=[],t=this.list
 for(let s=0;s<t.length;s++){let i=ke(t[s].value())
 i&&e.push(i)}return 0===e.length?null:e.join(" ")}}function Fe(e){return 0|(e.dynamicLayout?1:0)|(e.dynamicTag?2:0)|(e.prepareArgs?4:0)|(e.createArgs?8:0)|(e.attributeHook?16:0)|(e.elementHook?32:0)|(e.dynamicScope?64:0)|(e.createCaller?128:0)|(e.updateHook?256:0)|(e.createInstance?512:0)}function Pe(e,t){return!!(e&t)}ie.add(69,e=>{let t=e.stack,s=t.pop()
 t.push(xe.create(s))}),ie.add(70,e=>{let t=e.stack,s=t.peek()
 t.push(new Ae(s))}),ie.add(71,(e,{op1:t})=>{let s=e.stack,i=s.pop(),n=s.pop(),r=e.constants.getSerializable(t),a=e.constants.resolver
-e.loadValue(ae.v0,new De(i,a,r,n))}),ie.add(72,(e,{op1:t})=>{let s=e.constants.resolveHandle(t),i=s.manager,n=Fe(i.getCapabilities(s.state)),r={definition:s,manager:i,capabilities:n,state:null,handle:null,table:null,lookup:null}
+e.loadValue(ae.v0,new Re(i,a,r,n))}),ie.add(72,(e,{op1:t})=>{let s=e.constants.resolveHandle(t),i=s.manager,n=Fe(i.getCapabilities(s.state)),r={definition:s,manager:i,capabilities:n,state:null,handle:null,table:null,lookup:null}
 e.stack.push(r)}),ie.add(75,(t,{op1:s})=>{let i,n=t.stack,r=n.pop().value(),a=t.constants.getSerializable(s)
-if(t.loadValue(ae.t1,null),"string"==typeof r){i=Re(t.constants.resolver,r,a)}else{if(!ye(r))throw e()
+if(t.loadValue(ae.t1,null),"string"==typeof r){i=De(t.constants.resolver,r,a)}else{if(!ye(r))throw e()
 i=r}n.push(i)}),ie.add(73,e=>{let t,s,i=e.stack,n=i.pop()
 ye(n)?s=t=null:t=Fe((s=n.manager).getCapabilities(n.state)),i.push({definition:n,capabilities:t,manager:s,state:null,handle:null,table:null})}),ie.add(74,(t,{op1:s})=>{let i,n=t.stack,r=n.pop().value()
 if(!ye(r))throw e()
@@ -269,7 +269,7 @@ class Ge{constructor(e){this.tag=e.tag,this.artifacts=e}value(){return!this.arti
 t.push(r),t.push(new Ge(r.artifacts))}),ie.add(64,(e,{op1:t})=>{e.enterList(t)}),ie.add(65,e=>{e.exitList()}),ie.add(67,(e,{op1:t})=>{let s=e.stack.peek().next()
 if(s){let t=e.iterate(s.memo,s.value)
 e.enterItem(s.key,t)}else e.goto(t)})
-class Ye{constructor(e,t){this.element=e,this.nextSibling=t}}class We{constructor(e,t,s){this.parentNode=e,this.first=t,this.last=s}parentElement(){return this.parentNode}firstNode(){return this.first}lastNode(){return this.last}}class qe{constructor(e,t){this.parentNode=e,this.node=t}parentElement(){return this.parentNode}firstNode(){return this.node}lastNode(){return this.node}}function Ke(e,t){return new qe(e,t)}function Je(e,t){let s=e.parentElement(),i=e.firstNode(),n=e.lastNode(),r=i
+class Ye{constructor(e,t){this.element=e,this.nextSibling=t}}class We{constructor(e,t,s){this.parentNode=e,this.first=t,this.last=s}parentElement(){return this.parentNode}firstNode(){return this.first}lastNode(){return this.last}}class Ke{constructor(e,t){this.parentNode=e,this.node=t}parentElement(){return this.parentNode}firstNode(){return this.node}lastNode(){return this.node}}function qe(e,t){return new Ke(e,t)}function Je(e,t){let s=e.parentElement(),i=e.firstNode(),n=e.lastNode(),r=i
 for(;r;){let e=r.nextSibling
 if(s.insertBefore(r,t),r===n)return e
 r=e}return null}function Xe(e){let t=e.parentElement(),s=e.firstNode(),i=e.lastNode(),n=s
@@ -361,8 +361,8 @@ let r=this.scheduledInstallManagers,a=this.scheduledInstallModifiers
 for(let h=0;h<r.length;h++){let e=r[h],t=a[h]
 e.install(t)}let l=this.scheduledUpdateModifierManagers,o=this.scheduledUpdateModifiers
 for(let h=0;h<l.length;h++){let e=l[h],t=o[h]
-e.update(t)}}}class Rt{constructor({appendOperations:e,updateOperations:t}){this._transaction=null,this.appendOperations=e,this.updateOperations=t}toConditionalReference(e){return new me(e)}getAppendOperations(){return this.appendOperations}getDOM(){return this.updateOperations}begin(){this._transaction=new Mt}get transaction(){return this._transaction}didCreate(e,t){this.transaction.didCreate(e,t)}didUpdate(e,t){this.transaction.didUpdate(e,t)}scheduleInstallModifier(e,t){this.transaction.scheduleInstallModifier(e,t)}scheduleUpdateModifier(e,t){this.transaction.scheduleUpdateModifier(e,t)}didDestroy(e){this.transaction.didDestroy(e)}commit(){let e=this.transaction
-this._transaction=null,e.commit()}attributeFor(e,t,s,i=null){return St(e,t,i)}}class Dt{constructor(e,t,s,i,n=-1,r=-1){this.stack=e,this.heap=t,this.program=s,this.externs=i,this.pc=n,this.ra=r,this.currentOpSize=0}pushFrame(){this.stack.pushSmi(this.ra),this.stack.pushSmi(this.stack.fp),this.stack.fp=this.stack.sp-1}popFrame(){this.stack.sp=this.stack.fp-1,this.ra=this.stack.getSmi(0),this.stack.fp=this.stack.getSmi(1)}pushSmallFrame(){this.stack.pushSmi(this.ra)}popSmallFrame(){this.ra=this.stack.popSmi()}goto(e){let t=this.pc+e-this.currentOpSize
+e.update(t)}}}class Dt{constructor({appendOperations:e,updateOperations:t}){this._transaction=null,this.appendOperations=e,this.updateOperations=t}toConditionalReference(e){return new me(e)}getAppendOperations(){return this.appendOperations}getDOM(){return this.updateOperations}begin(){this._transaction=new Mt}get transaction(){return this._transaction}didCreate(e,t){this.transaction.didCreate(e,t)}didUpdate(e,t){this.transaction.didUpdate(e,t)}scheduleInstallModifier(e,t){this.transaction.scheduleInstallModifier(e,t)}scheduleUpdateModifier(e,t){this.transaction.scheduleUpdateModifier(e,t)}didDestroy(e){this.transaction.didDestroy(e)}commit(){let e=this.transaction
+this._transaction=null,e.commit()}attributeFor(e,t,s,i=null){return St(e,t,i)}}class Rt{constructor(e,t,s,i,n=-1,r=-1){this.stack=e,this.heap=t,this.program=s,this.externs=i,this.pc=n,this.ra=r,this.currentOpSize=0}pushFrame(){this.stack.pushSmi(this.ra),this.stack.pushSmi(this.stack.fp),this.stack.fp=this.stack.sp-1}popFrame(){this.stack.sp=this.stack.fp-1,this.ra=this.stack.getSmi(0),this.stack.fp=this.stack.getSmi(1)}pushSmallFrame(){this.stack.pushSmi(this.ra)}popSmallFrame(){this.ra=this.stack.popSmi()}goto(e){let t=this.pc+e-this.currentOpSize
 this.pc=t}call(e){this.ra=this.pc,this.pc=this.heap.getaddr(e)}returnTo(e){let t=this.pc+e-this.currentOpSize
 this.ra=t}return(){this.pc=this.ra}nextStatement(){let e=this.pc,t=this.program
 if(-1===e)return null
@@ -385,10 +385,10 @@ let i=new jt(e)
 this.pushBlockTracker(i,!0)}popRemoteElement(){this.popBlock(),this.popElement()}pushElement(e,t){this.cursorStack.push(new Ye(e,t))}didAddDestroyable(e){this.block().newDestroyable(e)}didAppendBounds(e){return this.block().didAppendBounds(e),e}didAppendNode(e){return this.block().didAppendNode(e),e}didOpenElement(e){return this.block().openElement(e),e}willCloseElement(){this.block().closeElement()}appendText(e){return this.didAppendNode(this.__appendText(e))}__appendText(e){let t=this.dom,s=this.element,i=this.nextSibling,n=t.createTextNode(e)
 return t.insertBefore(s,n,i),n}__appendNode(e){return this.dom.insertBefore(this.element,e,this.nextSibling),e}__appendFragment(e){let t=e.firstChild
 if(t){let s=function(e,t,s){return new We(e,t,s)}(this.element,t,e.lastChild)
-return this.dom.insertBefore(this.element,e,this.nextSibling),s}return Ke(this.element,this.__appendComment(""))}__appendHTML(e){return this.dom.insertHTMLBefore(this.element,this.nextSibling,e)}appendDynamicHTML(e){let t=this.trustedContent(e)
+return this.dom.insertBefore(this.element,e,this.nextSibling),s}return qe(this.element,this.__appendComment(""))}__appendHTML(e){return this.dom.insertHTMLBefore(this.element,this.nextSibling,e)}appendDynamicHTML(e){let t=this.trustedContent(e)
 this.didAppendBounds(t)}appendDynamicText(e){let t=this.untrustedContent(e)
 return this.didAppendNode(t),t}appendDynamicFragment(e){let t=this.__appendFragment(e)
-this.didAppendBounds(t)}appendDynamicNode(e){let t=this.__appendNode(e),s=Ke(this.element,t)
+this.didAppendBounds(t)}appendDynamicNode(e){let t=this.__appendNode(e),s=qe(this.element,t)
 this.didAppendBounds(s)}trustedContent(e){return this.__appendHTML(e)}untrustedContent(e){return this.__appendText(e)}appendComment(e){return this.didAppendNode(this.__appendComment(e))}__appendComment(e){let t=this.dom,s=this.element,i=this.nextSibling,n=t.createComment(e)
 return t.insertBefore(s,n,i),n}__setAttribute(e,t,s){this.dom.setAttribute(this.constructing,e,t,s)}__setProperty(e,t){this.constructing[e]=t}setStaticAttribute(e,t,s){this.__setAttribute(e,t,s)}setDynamicAttribute(e,t,s,i){let n=this.constructing,r=this.env.attributeFor(n,e,s,i)
 return r.set(this,t,this.env),r}}class zt{constructor(e){this.parent=e,this.first=null,this.last=null,this.destroyables=null,this.nesting=0}destroy(){let e=this.destroyables
@@ -410,7 +410,7 @@ switch(t){case"boolean":case"undefined":return!0
 case"number":if(e%1!=0)return!1
 let s=Math.abs(e)
 return!(s>$t)
-default:return!1}}(t))this.inner.writeRaw(e,qt(t))
+default:return!1}}(t))this.inner.writeRaw(e,Kt(t))
 else{let s=this.js.length
 this.js.push(t),this.inner.writeRaw(e,s|$t)}}writeSmi(e,t){this.inner.writeSmi(e,t)}writeImmediate(e,t){this.inner.writeRaw(e,t)}get(t){let s=this.inner.getRaw(t)
 return s&$t?this.js[s&Gt]:function(t){switch(t){case 3:return!1
@@ -421,13 +421,13 @@ default:return function(t){switch(7&t){case 0:return t>>3
 case 4:return-(t>>3)
 default:throw e()}}(t)}}(s)}getSmi(e){return this.inner.getSmi(e)}reset(){this.inner.reset(),this.js.length=0}get length(){return this.inner.len()}}class Wt{constructor(e,t,s){this.stack=e,this.fp=t,this.sp=s}static empty(){return new this(new Yt,0,-1)}static restore(e){let t=new Yt
 for(let s=0;s<e.length;s++)t.write(s,e[s])
-return new this(t,0,e.length-1)}push(e){this.stack.write(++this.sp,e)}pushSmi(e){this.stack.writeSmi(++this.sp,e)}pushImmediate(e){this.stack.writeImmediate(++this.sp,qt(e))}pushEncodedImmediate(e){this.stack.writeImmediate(++this.sp,e)}pushNull(){this.stack.writeImmediate(++this.sp,19)}dup(e=this.sp){this.stack.copy(e,++this.sp)}copy(e,t){this.stack.copy(e,t)}pop(e=1){let t=this.stack.get(this.sp)
+return new this(t,0,e.length-1)}push(e){this.stack.write(++this.sp,e)}pushSmi(e){this.stack.writeSmi(++this.sp,e)}pushImmediate(e){this.stack.writeImmediate(++this.sp,Kt(e))}pushEncodedImmediate(e){this.stack.writeImmediate(++this.sp,e)}pushNull(){this.stack.writeImmediate(++this.sp,19)}dup(e=this.sp){this.stack.copy(e,++this.sp)}copy(e,t){this.stack.copy(e,t)}pop(e=1){let t=this.stack.get(this.sp)
 return this.sp-=e,t}popSmi(){return this.stack.getSmi(this.sp--)}peek(e=0){return this.stack.get(this.sp-e)}peekSmi(e=0){return this.stack.getSmi(this.sp-e)}get(e,t=this.fp){return this.stack.get(t+e)}getSmi(e,t=this.fp){return this.stack.getSmi(t+e)}set(e,t,s=this.fp){this.stack.write(s+t,e)}slice(e,t){return this.stack.slice(e,t)}sliceArray(e,t){return this.stack.sliceInner(e,t)}capture(e){let t=this.sp+1,s=t-e
-return this.stack.sliceInner(s,t)}reset(){this.stack.reset()}toArray(){return this.stack.sliceInner(this.fp,this.sp+1)}}function qt(t){switch(typeof t){case"number":return function(e){return e<0?Math.abs(e)<<3|4:e<<3|0}(t)
+return this.stack.sliceInner(s,t)}reset(){this.stack.reset()}toArray(){return this.stack.sliceInner(this.fp,this.sp+1)}}function Kt(t){switch(typeof t){case"number":return function(e){return e<0?Math.abs(e)<<3|4:e<<3|0}(t)
 case"boolean":return t?11:3
 case"object":return 19
 case"undefined":return 27
-default:throw e()}}class Kt{constructor(e,t,{alwaysRevalidate:s=!1}){this.frameStack=new l,this.env=e,this.constants=t.constants,this.dom=e.getDOM(),this.alwaysRevalidate=s}execute(e,t){let s=this.frameStack
+default:throw e()}}class qt{constructor(e,t,{alwaysRevalidate:s=!1}){this.frameStack=new l,this.env=e,this.constants=t.constants,this.dom=e.getDOM(),this.alwaysRevalidate=s}execute(e,t){let s=this.frameStack
 for(this.try(e,t);!s.isEmpty();){let e=this.frame.nextStatement()
 null!==e?e.evaluate(this):this.frameStack.pop()}}get frame(){return this.frameStack.current}goto(e){this.frame.goto(e)}try(e,t){this.frameStack.push(new es(e,t))}throw(){this.frame.handleException(),this.frameStack.pop()}}class Jt extends re{constructor(e,t,s,i,n){super(),this.start=e,this.state=t,this.runtime=s,this.type="block",this.next=null,this.prev=null,this.children=n,this.bounds=i}parentElement(){return this.bounds.parentElement()}firstNode(){return this.bounds.firstNode()}lastNode(){return this.bounds.lastNode()}evaluate(e){e.try(this.children,null)}destroy(){this.bounds.destroy()}didDestroy(){this.runtime.env.didDestroy(this.bounds)}}class Xt extends Jt{constructor(e,t,s,i,n){super(e,t,s,i,n),this.type="try",this.tag=this._tag=L.create(y)}didInitializeChildren(){this._tag.inner.update(x(this.children))}evaluate(e){e.try(this.children,this)}handleException(){let e=this.state,t=this.bounds,s=this.children,i=this.start,n=this.prev,r=this.next,a=this.runtime
 s.clear()
@@ -446,7 +446,7 @@ let r=new Qt(this,n)
 new H({target:r,artifacts:t}).sync(),this.parentElement().removeChild(n)}super.evaluate(e)}vmForInsertion(e){let t=this.bounds,s=this.state,i=this.runtime,n=Pt.forInitialRender(i.env,{element:t.parentElement(),nextSibling:e})
 return cs.resume(s,i,n)}}class es{constructor(e,t){this.ops=e,this.exceptionHandler=t,this.current=e.head()}goto(e){this.current=e}nextStatement(){let e=this.current,t=this.ops
 return e&&(this.current=t.nextNode(e)),e}handleException(){this.exceptionHandler&&this.exceptionHandler.handleException()}}class ts{constructor(e,t,s,i){this.env=e,this.program=t,this.updating=s,this.bounds=i}rerender({alwaysRevalidate:e=!1}={alwaysRevalidate:!1}){let t=this.env,s=this.program,i=this.updating
-new Kt(t,s,{alwaysRevalidate:e}).execute(i,this)}parentElement(){return this.bounds.parentElement()}firstNode(){return this.bounds.firstNode()}lastNode(){return this.bounds.lastNode()}handleException(){throw"this should never happen"}destroy(){this.bounds.destroy(),Xe(this.bounds)}}class ss{constructor(){this.stack=null,this.positional=new is,this.named=new rs,this.blocks=new ls}empty(e){let t=e.sp+1
+new qt(t,s,{alwaysRevalidate:e}).execute(i,this)}parentElement(){return this.bounds.parentElement()}firstNode(){return this.bounds.firstNode()}lastNode(){return this.bounds.lastNode()}handleException(){throw"this should never happen"}destroy(){this.bounds.destroy(),Xe(this.bounds)}}class ss{constructor(){this.stack=null,this.positional=new is,this.named=new rs,this.blocks=new ls}empty(e){let t=e.sp+1
 return this.named.empty(e,t),this.positional.empty(e,t),this.blocks.empty(e,t),this}setup(e,t,s,i,n){this.stack=e
 let r=this.named,a=t.length,l=e.sp-a+1
 r.setup(e,l,a,t,n)
@@ -489,7 +489,7 @@ if(-1===i.indexOf(e))return null
 let r=s.get(3*n,t),a=s.get(3*n+1,t),l=s.get(3*n+2,t)
 return null===l?null:[l,a,r]}capture(){return new os(this.names,this.values)}}class os{constructor(e,t){this.names=e,this.values=t,this.length=e.length}has(e){return-1!==this.names.indexOf(e)}get(e){let t=this.names.indexOf(e)
 return-1===t?null:[this.values[3*t+2],this.values[3*t+1],this.values[3*t]]}}const hs=new as(y,c,c),us=new ns(y,c)
-class cs{constructor(e,t,s,i){this.runtime=e,this.elementStack=i,this.dynamicScopeStack=new l,this.scopeStack=new l,this.updatingOpcodeStack=new l,this.cacheGroups=new l,this.listBlockStack=new l,this.s0=null,this.s1=null,this.t0=null,this.t1=null,this.v0=null,this.heap=this.program.heap,this.constants=this.program.constants,this.elementStack=i,this.scopeStack.push(t),this.dynamicScopeStack.push(s),this.args=new ss,this.inner=new Dt(Wt.empty(),this.heap,e.program,{debugBefore:e=>ie.debugBefore(this,e,e.type),debugAfter:(e,t)=>{ie.debugAfter(this,e,e.type,t)}})}get stack(){return this.inner.stack}set stack(e){this.inner.stack=e}set currentOpSize(e){this.inner.currentOpSize=e}get currentOpSize(){return this.inner.currentOpSize}get pc(){return this.inner.pc}set pc(e){this.inner.pc=e}get ra(){return this.inner.ra}set ra(e){this.inner.ra=e}get fp(){return this.stack.fp}set fp(e){this.stack.fp=e}get sp(){return this.stack.sp}set sp(e){this.stack.sp=e}fetch(e){this.stack.push(this[ae[e]])}load(e){this[ae[e]]=this.stack.pop()}fetchValue(e){return this[ae[e]]}loadValue(e,t){this[ae[e]]=t}pushFrame(){this.inner.pushFrame()}popFrame(){this.inner.popFrame()}goto(e){this.inner.goto(e)}call(e){this.inner.call(e)}returnTo(e){this.inner.returnTo(e)}return(){this.inner.return()}static initial(e,t,s,i,n,r){let a=e.heap.scopesizeof(r),l=Lt.root(s,a),o=new cs({program:e,env:t},l,i,n)
+class cs{constructor(e,t,s,i){this.runtime=e,this.elementStack=i,this.dynamicScopeStack=new l,this.scopeStack=new l,this.updatingOpcodeStack=new l,this.cacheGroups=new l,this.listBlockStack=new l,this.s0=null,this.s1=null,this.t0=null,this.t1=null,this.v0=null,this.heap=this.program.heap,this.constants=this.program.constants,this.elementStack=i,this.scopeStack.push(t),this.dynamicScopeStack.push(s),this.args=new ss,this.inner=new Rt(Wt.empty(),this.heap,e.program,{debugBefore:e=>ie.debugBefore(this,e,e.type),debugAfter:(e,t)=>{ie.debugAfter(this,e,e.type,t)}})}get stack(){return this.inner.stack}set stack(e){this.inner.stack=e}set currentOpSize(e){this.inner.currentOpSize=e}get currentOpSize(){return this.inner.currentOpSize}get pc(){return this.inner.pc}set pc(e){this.inner.pc=e}get ra(){return this.inner.ra}set ra(e){this.inner.ra=e}get fp(){return this.stack.fp}set fp(e){this.stack.fp=e}get sp(){return this.stack.sp}set sp(e){this.stack.sp=e}fetch(e){this.stack.push(this[ae[e]])}load(e){this[ae[e]]=this.stack.pop()}fetchValue(e){return this[ae[e]]}loadValue(e,t){this[ae[e]]=t}pushFrame(){this.inner.pushFrame()}popFrame(){this.inner.popFrame()}goto(e){this.inner.goto(e)}call(e){this.inner.call(e)}returnTo(e){this.inner.returnTo(e)}return(){this.inner.return()}static initial(e,t,s,i,n,r){let a=e.heap.scopesizeof(r),l=Lt.root(s,a),o=new cs({program:e,env:t},l,i,n)
 return o.pc=o.heap.getaddr(r),o.updatingOpcodeStack.push(new h),o}static empty(e,t,s){let i={get:()=>ue,set:()=>ue,child:()=>i},n=new cs({program:e,env:t},Lt.root(ue,0),i,s)
 return n.updatingOpcodeStack.push(new h),n}static resume({scope:e,dynamicScope:t},s,i){return new cs(s,e,t,i)}get program(){return this.runtime.program}get env(){return this.runtime.env}capture(e){return{dynamicScope:this.dynamicScope(),scope:this.scope(),stack:this.stack.capture(e)}}beginCacheGroup(){this.cacheGroups.push(this.updating().tail())}commitCacheGroup(){let e=new Be("END"),t=this.updating(),s=this.cacheGroups.pop(),i=s?t.nextNode(s):t.head(),n=t.tail(),r=x(new u(i,n)),a=new Oe(r,e)
 t.insertBefore(a,i),t.append(new Te(a)),t.append(e)}enter(e){let t=new h,s=this.capture(e),i=this.elements().pushUpdatableBlock(),n=new Xt(this.heap.gethandle(this.pc),s,this.runtime,i,t)
@@ -550,21 +550,21 @@ return this.position++,{key:n,value:i,memo:r}}}class Ls{constructor(e,t,s){this.
 if(e>=t.length)return null
 let n=s[e],r=t[e],a=i(n,r)
 return this.position++,{key:a,value:n,memo:r}}}const Ms=new class{isEmpty(){return!0}next(){throw new Error("Cannot call next() on an empty iterator")}}
-class Rs{constructor(e,t){this.tag=e.tag,this.ref=e,this.keyFor=t}iterate(){let e=this.ref,t=this.keyFor,s=e.value()
+class Ds{constructor(e,t){this.tag=e.tag,this.ref=e,this.keyFor=t}iterate(){let e=this.ref,t=this.keyFor,s=e.value()
 if(Array.isArray(s))return s.length>0?new Bs(s,t):Ms
 if(null==s)return Ms
 if(void 0!==s.forEach){let e=[]
 return s.forEach(function(t){e.push(t)}),e.length>0?new Bs(e,t):Ms}if("object"==typeof s){let e=Object.keys(s)
-return e.length>0?new Ls(e,e.map(e=>s[e]),t):Ms}throw new Error(`Don't know how to {{#each ${s}}}`)}valueReferenceFor(e){return new vs(e.value)}updateValueReference(e,t){e.update(t.value)}memoReferenceFor(e){return new vs(e.memo)}updateMemoReference(e,t){e.update(t.memo)}}class Ds extends Rt{static create(e={}){return e.document=e.document||self.document,e.appendOperations=e.appendOperations||new ht(e.document),new Ds(e)}constructor(e){super({appendOperations:e.appendOperations,updateOperations:new ot(e.document||document)}),Ns(this,As(e)),this.uselessAnchor=e.document.createElement("a")}protocolForURL(e){return this.uselessAnchor.href=e,this.uselessAnchor.protocol}iterableFor(e,t){let s
+return e.length>0?new Ls(e,e.map(e=>s[e]),t):Ms}throw new Error(`Don't know how to {{#each ${s}}}`)}valueReferenceFor(e){return new vs(e.value)}updateValueReference(e,t){e.update(t.value)}memoReferenceFor(e){return new vs(e.memo)}updateMemoReference(e,t){e.update(t.memo)}}class Rs extends Dt{static create(e={}){return e.document=e.document||self.document,e.appendOperations=e.appendOperations||new ht(e.document),new Rs(e)}constructor(e){super({appendOperations:e.appendOperations,updateOperations:new ot(e.document||document)}),Ns(this,As(e)),this.uselessAnchor=e.document.createElement("a")}protocolForURL(e){return this.uselessAnchor.href=e,this.uselessAnchor.protocol}iterableFor(e,t){let s
 if(!t)throw new Error("Must specify a key for #each")
 switch(t){case"@index":s=((e,t)=>String(t))
 break
 case"@primitive":s=(e=>String(e))
 break
-default:s=(e=>e[t])}return new Rs(e,s)}getOwner(){return As(this)}setOwner(e,t){Ns(e,t)}}const Is="object"==typeof document?document:null
+default:s=(e=>e[t])}return new Ds(e,s)}getOwner(){return As(this)}setOwner(e,t){Ns(e,t)}}const Is="object"==typeof document?document:null
 class Fs{constructor(e){this._roots=[],this._rootsIndex=0,this._initializers=[],this._initialized=!1,this._rendering=!1,this._rendered=!1,this._scheduled=!1,this._notifiers=[],this.rootName=e.rootName,this.resolver=e.resolver,t(e.loader,"Must provide a Loader for preparing templates and other metadata required for a Glimmer Application."),t(e.renderer,"Must provide a Renderer to render the templates produced by the Loader."),t(e.builder,"Must provide a Builder that is responsible to building DOM."),this.document=e.document||Is,this.loader=e.loader,this.renderer=e.renderer,this.builder=e.builder}renderComponent(e,t,s=null){let i=this._roots,n=this._self
 i.push({id:this._rootsIndex++,component:e,parent:t,nextSibling:s}),n&&(n.update({roots:i}),this.scheduleRerender())}async boot(){this.initialize(),this.env=this.lookup(`environment:/${this.rootName}/main/main`),await this._render()}scheduleRerender(){!this._scheduled&&this._rendered&&(this._rendering=!0,this._scheduled=!0,setTimeout(async()=>{this._scheduled=!1,await this._rerender(),this._rendering=!1},0))}initialize(){this.initRegistry(),this.initContainer()}registerInitializer(e){this._initializers.push(e)}initRegistry(){let e=this._registry=new Es,t=new Os(this._registry,this.resolver)
-e.register(`environment:/${this.rootName}/main/main`,Ds),e.registerOption("helper","instantiate",!1),e.registerOption("template","instantiate",!1),e.register(`document:/${this.rootName}/main/main`,this.document),e.registerOption("document","instantiate",!1),e.registerInjection("environment","document",`document:/${this.rootName}/main/main`),e.registerInjection("component-manager","env",`environment:/${this.rootName}/main/main`)
+e.register(`environment:/${this.rootName}/main/main`,Rs),e.registerOption("helper","instantiate",!1),e.registerOption("template","instantiate",!1),e.register(`document:/${this.rootName}/main/main`,this.document),e.registerOption("document","instantiate",!1),e.registerInjection("environment","document",`document:/${this.rootName}/main/main`),e.registerInjection("component-manager","env",`environment:/${this.rootName}/main/main`)
 let s=this._initializers
 for(let i=0;i<s.length;i++)s[i].initialize(t)
 this._initialized=!0}initContainer(){this._container=new Cs(this._registry,this.resolver),this._container.defaultInjections=(e=>{let t={}
@@ -581,8 +581,8 @@ var Vs;(function(e){e[e.OpenComponentElement=0]="OpenComponentElement",e[e.DidCr
 var Us=js
 const $s="&attrs"
 class Gs{constructor(e=0){this.offset=e,this.names=a(),this.funcs=[]}add(e,t){this.funcs.push(t),this.names[e]=this.funcs.length-1}compile(e,t){let s=e[this.offset],i=this.names[s];(0,this.funcs[i])(e,t)}}let Ys,Ws
-function qs(e,t,s){let i=e[1],n=e[2],r=e[3]
-s.expr(n),r?s.dynamicAttr(i,r,t):s.dynamicAttr(i,null,t)}class Ks{constructor(){var e=function(e=new Js,t=new Xs){return e.add("if",(e,t,s,i,n)=>{if(!e||1!==e.length)throw new Error("SYNTAX ERROR: #if requires a single argument")
+function Ks(e,t,s){let i=e[1],n=e[2],r=e[3]
+s.expr(n),r?s.dynamicAttr(i,r,t):s.dynamicAttr(i,null,t)}class qs{constructor(){var e=function(e=new Js,t=new Xs){return e.add("if",(e,t,s,i,n)=>{if(!e||1!==e.length)throw new Error("SYNTAX ERROR: #if requires a single argument")
 n.replayableIf({args:()=>(n.expr(e[0]),n.toBoolean(),1),ifTrue(){n.invokeStaticBlock(s)},ifFalse(){i&&n.invokeStaticBlock(i)}})}),e.add("unless",(e,t,s,i,n)=>{if(!e||1!==e.length)throw new Error("SYNTAX ERROR: #unless requires a single argument")
 n.replayableIf({args:()=>(n.expr(e[0]),n.toBoolean(),1),ifTrue(){i&&n.invokeStaticBlock(i)},ifFalse(){n.invokeStaticBlock(s)}})}),e.add("with",(e,t,s,i,n)=>{if(!e||1!==e.length)throw new Error("SYNTAX ERROR: #with requires a single argument")
 n.replayableIf({args:()=>(n.expr(e[0]),n.dup(),n.toBoolean(),2),ifTrue(){n.invokeStaticBlock(s,1)},ifFalse(){i&&n.invokeStaticBlock(i)}})}),e.add("each",(e,t,s,i,n)=>{n.replayable({args:()=>(t&&"key"===t[0][0]?n.expr(t[1][0]):n.pushPrimitiveReference(null),n.expr(e[0]),2),body(){n.putIterator(),n.jumpUnless("ELSE"),n.pushFrame(),n.dup(ae.fp,1),n.returnTo("ITER"),n.enterList("BODY"),n.label("ITER"),n.iterate("BREAK"),n.label("BODY"),n.invokeStaticBlock(s,2),n.pop(2),n.jump("FINALLY"),n.label("BREAK"),n.exitList(),n.popFrame(),n.jump("FINALLY"),n.label("ELSE"),i&&n.invokeStaticBlock(i)}})}),e.add("in-element",(e,t,s,i,n)=>{if(!e||1!==e.length)throw new Error("SYNTAX ERROR: #in-element requires a single argument")
@@ -618,7 +618,7 @@ const e=Ys=new Gs
 e.add(Us.Text,(e,t)=>{t.text(e[1])}),e.add(Us.Comment,(e,t)=>{t.comment(e[1])}),e.add(Us.CloseElement,(e,t)=>{t.closeElement()}),e.add(Us.FlushElement,(e,t)=>{t.flushElement()}),e.add(Us.Modifier,(e,t)=>{let s=t.referrer,i=e[1],n=e[2],r=e[3],a=t.compiler.resolveModifier(i,s)
 if(null===a)throw new Error(`Compile Error ${i} is not a modifier: Helpers may not be used in the element form.`)
 t.modifier(a,n,r)}),e.add(Us.StaticAttr,(e,t)=>{let s=e[1],i=e[2],n=e[3]
-t.staticAttr(s,n,i)}),e.add(Us.DynamicAttr,(e,t)=>{qs(e,!1,t)}),e.add(Us.TrustingAttr,(e,t)=>{qs(e,!0,t)}),e.add(Us.OpenElement,(e,t)=>{t.openPrimitiveElement(e[1])}),e.add(Us.OpenSplattedElement,(e,t)=>{t.setComponentAttrs(!0),t.putComponentOperations(),t.openPrimitiveElement(e[1])}),e.add(Us.Component,(e,t)=>{let s=e[1],i=e[2],n=e[3],r=e[4],a=t.referrer
+t.staticAttr(s,n,i)}),e.add(Us.DynamicAttr,(e,t)=>{Ks(e,!1,t)}),e.add(Us.TrustingAttr,(e,t)=>{Ks(e,!0,t)}),e.add(Us.OpenElement,(e,t)=>{t.openPrimitiveElement(e[1])}),e.add(Us.OpenSplattedElement,(e,t)=>{t.setComponentAttrs(!0),t.putComponentOperations(),t.openPrimitiveElement(e[1])}),e.add(Us.Component,(e,t)=>{let s=e[1],i=e[2],n=e[3],r=e[4],a=t.referrer
 var l=t.compiler.resolveLayoutForTag(s,a)
 let o=l.handle,h=l.capabilities,u=l.compilable
 if(null===o||null===h)throw new Error(`Compile Error: Cannot find component ${s}`)
@@ -817,13 +817,13 @@ throw new Error(`You tried to create an action with the {{action}} helper, but t
 t.shift(),t.push(...e),n.apply(s&&s.value(),t)})}function Bi(e){return e[0]?e[1]:e[2]}class Li{constructor(e){this.resolver=e}getComponentDefinition(e){let s=this.resolver.resolve(e)
 return t(!!s,`Couldn't find a template for ${e}`),s}getCapabilities(e){let t=this.getComponentDefinition(e),s=t.manager,i=t.state
 return s.getCapabilities(i)}getLayout(e){let t=this.getComponentDefinition(e),s=t.manager.getLayout(t,this.resolver)
-return{compile:()=>s.handle,symbolTable:s.symbolTable}}lookupHelper(e,t){return this.resolver.lookupHelper(e,t)}lookupModifier(e,t){return this.resolver.lookupModifier(e,t)}lookupComponentDefinition(e,t){return this.resolver.lookupComponentHandle(e,t)}lookupPartial(e,t){return this.resolver.lookupPartial(e,t)}}class Mi{constructor(e){this.resolver=e}async getTemplateIterator(e,t,s,n,r){let a=new Ni(e),l=new Li(a),o=new Ks,h=new Ei(l,a,o),u=h.program
+return{compile:()=>s.handle,symbolTable:s.symbolTable}}lookupHelper(e,t){return this.resolver.lookupHelper(e,t)}lookupModifier(e,t){return this.resolver.lookupModifier(e,t)}lookupComponentDefinition(e,t){return this.resolver.lookupComponentHandle(e,t)}lookupPartial(e,t){return this.resolver.lookupPartial(e,t)}}class Mi{constructor(e){this.resolver=e}async getTemplateIterator(e,t,s,n,r){let a=new Ni(e),l=new Li(a),o=new qs,h=new Ei(l,a,o),u=h.program
 a.compiler=h,a.registerTemplate("main",Oi),a.registerInternalHelper("action",Ti),a.registerHelper("if",Bi)
 let c=function({id:e,meta:t,block:s}){let n,r=e||`client-${xi++}`
 return{id:r,meta:t,create:(e,a)=>{let l=a?i({},a,t):t
 return n||(n=JSON.parse(s)),new Ai(e,{id:r,block:n,referrer:l})}}}(Oi).create(h)
 return Promise.resolve(function(e,t,s,i,n,r){let a=cs.initial(e,t,s,i,n,r)
-return new ps(a)}(u,t,r,n,s,c.asLayout().compile()))}}class Ri{constructor({element:e,nextSibling:t=null}){this.cursor={element:e,nextSibling:t}}getBuilder(e){return function(e,t){return Pt.forInitialRender(e,t)}(e,this.cursor)}}class Di{render(e){let t
+return new ps(a)}(u,t,r,n,s,c.asLayout().compile()))}}class Di{constructor({element:e,nextSibling:t=null}){this.cursor={element:e,nextSibling:t}}getBuilder(e){return function(e,t){return Pt.forInitialRender(e,t)}(e,this.cursor)}}class Ri{render(e){let t
 do{t=e.next()}while(!t.done)
 this.result=t.value}rerender(){if(!this.result)throw new Error("Cannot re-render before initial render has completed")
 this.result.rerender()}}function Ii(e){return void 0!==e.rootName&&void 0!==e.collection&&void 0!==e.name&&void 0!==e.type}function Fi(e){let t=e.type,s=function(e){let t=[]
@@ -852,9 +852,9 @@ i.rootName=i.collection=i.namespace=void 0}else zi('Referrer must either be "abs
 i.namespace?(i.rootName=i.namespace,i.namespace=void 0):(i.rootName=i.name,i.name="main")}return(s=this._serializeAndVerify(i))?s:void 0}retrieve(e){return this.registry.get(e)}resolve(e,t){let s=this.identify(e,t)
 if(s)return this.retrieve(s)}_definitiveCollection(e){let t=this.config.types[e]
 return zi(`'${e}' is not a recognized type`,t),t.definitiveCollection}_serializeAndVerify(e){let t=Fi(e)
-if(this.registry.has(t))return t}}class Hi{constructor(e={}){this._entries=e}has(e){return e in this._entries}get(e){return this._entries[e]}}class Vi extends Z{constructor(){super(...arguments),this.messages=[]}didInsertElement(){this.element.addEventListener("got-messages",this.gotMessages.bind(this),!1)}gotMessages(e){this.updateMessages(e.detail)}addMessage(){const e=this.element.querySelector("input").value
+if(this.registry.has(t))return t}}class Hi{constructor(e={}){this._entries=e}has(e){return e in this._entries}get(e){return this._entries[e]}}class Vi extends Z{constructor(){super(...arguments),this.messages=[]}didInsertElement(){this.element.dispatchEvent(new CustomEvent("floorplan-ready",{bubbles:!0,detail:this}))}addMessage(){const e=this.element.querySelector("input").value
 if(e){const t=this.messages.slice()
-t.push(e),this.updateMessages(t)}}updateMessages(e){this.messages=e,this.element.messages=e}}(function(e,t,s,i){var n,r=arguments.length,a=r<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i
+t.push(e),this.messages=t}}}(function(e,t,s,i){var n,r=arguments.length,a=r<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i
 if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,s,i)
 else for(var l=e.length-1;l>=0;l--)(n=e[l])&&(a=(r<3?n(a):r>3?n(t,s,a):n(t,s))||a)
 r>3&&a&&Object.defineProperty(t,s,a)})([function(...e){let t=e[0],s=e[1],i=e[2]
@@ -864,12 +864,15 @@ let n=s.get,r=s.set
 return{enumerable:!0,configurable:!1,get:function(){let e=U,s=U=new V,i=n.call(this)
 U=e
 let r=s.combine()
-return U&&U.add(r),W(this).updatableTagFor(t).inner.update(r),i},set:r?function(){K.inner.dirty(),W(this).updatableTagFor(t).inner.update(C.create()),r.apply(this,arguments)}:void 0}}(t,s,i);(function(e,t){let s=Symbol(t)
-W(e).trackedProperties[t]=!0,Object.defineProperty(e,t,{configurable:!0,get(){return $(this,t),this[s]},set(e){K.inner.dirty(),W(this).updatableTagFor(t).inner.update(C.create()),this[s]=e,J()}})})(t,s)}],Vi.prototype,"messages",void 0)
+return U&&U.add(r),W(this).updatableTagFor(t).inner.update(r),i},set:r?function(){q.inner.dirty(),W(this).updatableTagFor(t).inner.update(C.create()),r.apply(this,arguments)}:void 0}}(t,s,i);(function(e,t){let s=Symbol(t)
+W(e).trackedProperties[t]=!0,Object.defineProperty(e,t,{configurable:!0,get(){return $(this,t),this[s]},set(e){q.inner.dirty(),W(this).updatableTagFor(t).inner.update(C.create()),this[s]=e,J()}})})(t,s)}],Vi.prototype,"messages",void 0)
 var Ui={"component:/my-app/components/MyApp":Vi,"template:/my-app/components/MyApp":{id:"BkWjsgCY",block:'{"symbols":[],"statements":[[6,"div"],[10,"class","my-app"],[8],[0,"\\n    "],[5,"MyAppChild",[],[["@messages","@addMessage"],[[21,0,["messages"]],[26,"action",[[22,["addMessage"]]],null]]],{"statements":[[0,"\\n    "]],"parameters":[]}],[0,"\\n"],[9]],"hasEval":false}',meta:{specifier:"template:/my-app/components/MyApp"}},"component:/my-app/components/MyAppChild":class extends Z{},"template:/my-app/components/MyAppChild":{id:"6rjz2uG2",block:'{"symbols":["message","@messages","@addMessage"],"statements":[[6,"div"],[8],[0,"\\n    "],[6,"ul"],[8],[0,"\\n"],[4,"each",[[21,2,[]]],[["key"],["@index"]],{"statements":[[0,"            "],[6,"li"],[8],[1,[21,1,[]],false],[9],[0,"\\n"]],"parameters":[1]},null],[0,"    "],[9],[0,"\\n    "],[6,"input"],[10,"type","text"],[8],[9],[0,"\\n    "],[6,"button"],[11,"onclick",[26,"action",[[21,3,[]]],null]],[8],[0,"Add message"],[9],[0,"\\n"],[9]],"hasEval":false}',meta:{specifier:"template:/my-app/components/MyAppChild"}}},$i={app:{name:"my-app",rootName:"my-app"},types:{application:{definitiveCollection:"main"},component:{definitiveCollection:"components"},"component-test":{unresolvable:!0},helper:{definitiveCollection:"components"},"helper-test":{unresolvable:!0},renderer:{definitiveCollection:"main"},template:{definitiveCollection:"components"}},collections:{main:{types:["application","renderer"]},components:{group:"ui",types:["component","component-test","template","helper","helper-test"],defaultType:"component",privateCollections:["utils"]},styles:{group:"ui",unresolvable:!0},utils:{unresolvable:!0}}}
-const Gi=new class extends Fs{constructor(){let e=new Hi(Ui),t=new ji($i,e)
+function Gi(e,t,s){function i(){return Reflect.construct(HTMLElement,[],i)}i.prototype=Object.create(HTMLElement.prototype,{constructor:{value:i},connectedCallback:{value:function(){let t=document.createElement("span"),i=this.parentNode
+i.insertBefore(t,this),i.removeChild(this),e.renderComponent(s,i,t),function e(t,s){t._rendering?requestAnimationFrame(()=>{e(t,s)}):s()}(e,()=>{let e=t.previousElementSibling
+t.remove(),function(e,t){let s=e.attributes
+for(let n=0;n<s.length;n++){var i=s.item(n)
+let e=i.name,r=i.value
+t.setAttribute(e,r)}}(this,e)})}}}),window.customElements.define(t,i)}const Yi=new class extends Fs{constructor(){let e=new Hi(Ui),t=new ji($i,e)
 const s=document.body
-super({builder:new Ri({element:s,nextSibling:null}),loader:new Mi(t),renderer:new Di,resolver:t,rootName:$i.app.rootName})}},Yi=document.querySelector("floor-plan")
-Yi.attachShadow({mode:"open"})
-customElements.define("floor-plan",class extends HTMLElement{set messages(e){this.myApp||(this.myApp=this.shadowRoot.querySelector(".my-app")),this.myApp.dispatchEvent(new CustomEvent("got-messages",{detail:e}))}get messages(){return this.myApp||(this.myApp=this.shadowRoot.querySelector(".my-app")),this.myApp.messages}connectedCallback(){fetch("./app-34991e92b03fd6748ce94f4dfe42cd40.css",{mode:"no-cors"}).then(e=>e.text()).then(e=>{const t=document.createElement("style")
-t.innerHTML=e,this.shadowRoot.appendChild(t)})}}),J=(()=>{Gi.scheduleRerender()}),Gi.registerInitializer({initialize(e){e.register(`component-manager:/${Gi.rootName}/component-managers/main`,Ss)}}),Gi.renderComponent("MyApp",Yi.shadowRoot,null),Gi.boot()})
+super({builder:new Di({element:s,nextSibling:null}),loader:new Mi(t),renderer:new Ri,resolver:t,rootName:$i.app.rootName})}},Wi=document.getElementById("app")
+J=(()=>{Yi.scheduleRerender()}),Yi.registerInitializer({initialize(e){e.register(`component-manager:/${Yi.rootName}/component-managers/main`,Ss)}}),Yi.renderComponent("MyApp",Wi,null),Yi.boot().then(()=>{(function(e,t){for(let s in t)Gi(e,s,t[s])})(Yi,{"floor-plan":"MyApp"})})})

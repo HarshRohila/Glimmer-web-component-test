@@ -1,12 +1,13 @@
-const wc = document.querySelector('floor-plan');
-wc.messages = ['sdfa', 'asdfasdf'];
-const btn = document.querySelector('button');
+document.addEventListener('floorplan-ready', (event) => {
+    const floorplan = event.detail;
+    const btn = document.querySelector('.outside-button');
 
-btn.onclick = () => {
-    const msg = document.querySelector('input').value;
-    if (msg) {
-        const msgs = wc.messages.slice();
-        msgs.push(msg);
-        wc.messages = msgs;
+    btn.onclick = () => {
+        const msg = document.querySelector('.outside-input').value;
+        if (msg) {
+            const msgs = floorplan.messages.slice();
+            msgs.push(msg);
+            floorplan.messages = msgs;
+        }
     }
-}
+}, false);
